@@ -13,7 +13,7 @@ namespace life {
     m_block_size = bs;
     m_width = w * bs;
     m_height = h * bs;
-    m_pixels[h][w][4];
+    m_pixels[h * w * 4];
   }
     /// Destructor.
   Canvas::~Canvas(void){}
@@ -25,11 +25,10 @@ namespace life {
   //=== Members
   /// Clear the canvas with black color.
   void Canvas::clear(const Color& color){
-    m_pixels[m_width * m_height * 4];
-    for (int i = 0; i < m_pixels.size(); i+4){
-      m_pixels[(i / m_height) % m_height] = color.channels[Color::R];
-      m_pixels[(i + 1 / m_width) % m_width] = color.channels[Color::G];
-      m_pixels[(i + 2) % 3] = color.channels[Color::B];
+    for (int i = 0; i < m_pixels.size(); i+=4){
+      m_pixels[i] = color.channels[Color::R];
+      m_pixels[i + 1] = color.channels[Color::G];
+      m_pixels[i + 2] = color.channels[Color::B];
       m_pixels[i + 3] = 255;
     }
   }
