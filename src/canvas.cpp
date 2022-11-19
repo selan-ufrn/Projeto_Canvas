@@ -33,8 +33,11 @@ namespace life {
     }
   }
   /// Set the color of a pixel on the canvas.
-  void Canvas::pixel(coord_t height, coord_t width, const Color&){
-    
+  void Canvas::pixel(coord_t height, coord_t width, const Color& color){
+    m_pixels[(width * m_width) + (height * 4)] = color.channels[Color::R];
+    m_pixels[(width * m_width) + (height * 4) + 1] = color.channels[Color::G];
+    m_pixels[(width * m_width) + (height * 4) + 2] = color.channels[Color::B];
+    m_pixels[(width * m_width) + (height * 4) + 3] = 255;
   }
   /// Get the pixel color from the canvas.
   Color Canvas::pixel(coord_t, coord_t) const{return BLACK;}
